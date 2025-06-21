@@ -1,0 +1,45 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+<%- include('../partials/nav') %>
+
+<main class="pt-20 px-6 flex flex-col items-center">
+  <header class="mb-8">
+    <h2 class="text-red-700 text-3xl md:text-4xl font-bold drop-shadow-md text-center">Details of</h2>
+  </header>
+
+  <div class="w-full max-w-4xl bg-white rounded-xl shadow-md overflow-hidden transition-shadow duration-300 flex flex-col md:flex-row">
+    <!-- Left: Image -->
+    <div class="md:w-1/2">
+      <img src="<%= home.photoUrl %>" alt="<%= home.housename %>" class="w-full h-full object-cover" />
+    </div>
+
+    <!-- Right: Details -->
+    <div class="md:w-1/2 p-6 space-y-6">
+      <h3 class="text-2xl font-extrabold text-gray-800 mb-4">
+        <%= home.housename %>
+      </h3>
+
+      <div class="space-y-2 border-b pb-4">
+        <p class="text-gray-600 font-medium">Location</p>
+        <p class="text-gray-800"><%= home.location %></p>
+      </div>
+
+      <div class="space-y-2 border-b pb-4">
+        <p class="text-gray-600 font-medium">Price</p>
+        <p class="text-green-600 font-bold text-lg">$<%= home.price %> <span class="text-sm font-normal">/night</span></p>
+      </div>
+
+      <div class="space-y-2">
+        <p class="text-gray-600 font-medium">Rating</p>
+        <p class="text-yellow-500 font-semibold text-lg">★ <%= home.rating %>/5</p>
+      </div>
+      <div class="mt-2">
+        <%- include('../partials/favourite') %>
+      </div>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

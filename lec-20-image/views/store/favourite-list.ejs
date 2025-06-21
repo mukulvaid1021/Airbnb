@@ -1,0 +1,53 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gradient-to-br from-pink-200 via-white to-blue-100 min-h-screen font-sans relative overflow-x-hidden">
+  <!-- Decorative Blobs -->
+  <div class="absolute top-0 left-0 w-72 h-72 bg-pink-300 opacity-30 rounded-full blur-3xl -z-10 animate-pulse"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-300 opacity-30 rounded-full blur-3xl -z-10 animate-pulse"></div>
+  <div class="absolute top-1/2 left-1/2 w-40 h-40 bg-red-200 opacity-20 rounded-full blur-2xl -z-10 animate-pulse"></div>
+
+  <%- include('../partials/nav') %>
+  <!-- Main content with padding to avoid overlap with fixed nav -->
+  <main class="pt-28 px-6 flex flex-col items-center min-h-screen">
+
+    <header class="mb-10">
+      <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-pink-500 to-blue-600 text-5xl md:text-6xl font-extrabold text-center drop-shadow-xl tracking-tight">
+        Here are your favourite homes:
+      </h2>
+    </header>
+
+    <ul class="w-full max-w-3xl space-y-8">
+      <% favouritehomes.forEach(home => { %>
+        <li class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden hover:shadow-pink-200 hover:scale-[1.025] transition-all duration-300 cursor-default select-none flex flex-col md:flex-row border border-pink-100 ring-2 ring-pink-200/40">
+          <div class="flex-shrink-0 md:w-60 h-60 md:h-auto overflow-hidden">
+            <img src="<%= home.photo %>" alt="<%= home.housename %>" class="w-full h-full object-cover rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none" />
+          </div>
+          <div class="p-8 flex flex-col justify-between w-full">
+            <div>
+              <h3 class="text-3xl font-extrabold text-red-700 mb-2 tracking-tight"><%= home.housename %></h3>
+              <p class="text-gray-700 text-lg mb-1">Price: <span class="font-semibold text-green-600">$<%= home.price %></span></p>
+              <p class="text-gray-600 mb-1">Location: <span class="font-medium"><%= home.location %></span></p>
+              <p class="text-yellow-500 mb-3 flex items-center">
+                <span class="mr-2">Rating:</span>
+                <span class="text-2xl font-bold flex items-center">
+                  <%= home.rating %>
+                  <svg class="w-6 h-6 ml-1 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.454a1 1 0 00-1.175 0l-3.38 2.454c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z"/>
+                  </svg>
+                </span>
+              </p>
+            </div>
+            <form action="/favourites/delete/<%= home._id %>" method="POST" class="mt-4">
+              <button class="bg-gradient-to-r from-pink-500 via-red-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white font-bold py-2 px-5 rounded-xl shadow-lg transition-all duration-300 text-base tracking-wide flex items-center gap-2" type="submit">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+                Remove from favourites
+              </button>
+            </form>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+    
+  </main>
+</body>
+</html>

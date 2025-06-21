@@ -1,0 +1,66 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+<%- include('../partials/nav') %>
+
+<main class="pt-24 px-4 md:px-6 flex flex-col items-center">
+
+  <!-- Image with Overlay Text -->
+  <div class="w-full max-w-5xl relative rounded-2xl overflow-hidden shadow-xl">
+    <img src="<%= home.photo %>" alt="<%= home.housename %>" class="w-full h-72 md:h-96 object-cover" />
+
+    <!-- Overlay content -->
+    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-6 text-white">
+      <h2 class="text-3xl md:text-4xl font-bold drop-shadow-lg mb-1"><%= home.housename %></h2>
+      <p class="text-lg md:text-xl mb-1 flex items-center gap-2">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 12.414a4 4 0 10-5.657 5.657l4.243 4.243a1 1 0 001.414 0l4.243-4.243z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <%= home.location %>
+      </p>
+      <p class="text-yellow-400 font-semibold text-lg">★ <%= home.rating %>/5</p>
+    </div>
+  </div>
+
+  <!-- Property Details Section -->
+  <div class="w-full max-w-5xl bg-white rounded-b-2xl shadow-md -mt-2 px-6 py-8 space-y-6">
+    
+    <!-- Property Details Heading -->
+    <h3 class="text-2xl font-bold text-gray-800 border-b pb-3">
+      Property Details
+    </h3>
+
+    <!-- Description -->
+    <div>
+      <p class="text-gray-700 text-base leading-relaxed">
+        <%= home.description || "No description available for this property." %>
+      </p>
+    </div>
+
+    <!-- Price -->
+    <div>
+      <p class="text-sm text-gray-500 uppercase font-semibold tracking-wide">Price</p>
+      <p class="text-green-600 font-bold text-xl">$<%= home.price %> <span class="text-sm font-normal text-gray-500">/ night</span></p>
+    </div>
+
+    <!-- Rules Link -->
+    <div>
+      <a href="/rules/<%= home._id %>" class="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium hover:underline transition">
+  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M12 9v3m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+  Download House Rules
+</a>
+    </div>
+
+    <!-- Favourite -->
+    <div>
+      <%- include('../partials/favourite') %>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>
